@@ -12,24 +12,37 @@ export default function App() {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [resultado, setResultado] = useState("");
-  const calcular = (vm) => {
-    const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
+  const [resultado2, setResultado2] = useState("");
 
-    if (isNaN(n1) || isNaN(n2)) {
+  const calcular1 = (temp) => {
+    const n1 = parseFloat(num1);
+
+    if (isNaN(n1)) {
       setResultado("Entrada inválida");
       return;
     }
 
-    switch (vm) {
-      case "conta":
-        setResultado(n1 / n2 + "V");
+    switch (temp) {
+      case "CpraF":
+        setResultado(n1 * 1.8 + 32 + " °F");
         break;
       default:
-        break;
     }
   };
+  const calcular2 = (temp2) => {
+    const n2 = parseFloat(num2);
+    if (isNaN(n2)) {
+      setResultado2("Entrada inválida");
+      return;
+    }
 
+    switch (temp2) {
+      case "FpraC":
+        setResultado2((n2 - 32) / 1.8 + " °C");
+        break;
+      default:
+    }
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -38,33 +51,38 @@ export default function App() {
         }}
         style={styles.image}
       />
-      <Text style={styles.title}>Velocidade Média Fórmula</Text>
+      <Text style={styles.title}> Conversão de Temperatura</Text>
+
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor da distância percorrida"
+        placeholder="Digite em Celsius para converter em Fahrenheit"
         keyboardType="numeric"
         value={num1}
         onChangeText={(text) => setNum1(text)}
       />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => calcular1("CpraF")}
+      >
+        <Text style={styles.buttonText}>Converter para Fahrenheit</Text>
+      </TouchableOpacity>
+      <Text style={styles.result}>Resultado: {resultado}</Text>
+
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor do tempo"
+        placeholder="Digite em Fahrenheit para converter em Celsius"
         keyboardType="numeric"
         value={num2}
         onChangeText={(text) => setNum2(text)}
       />
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => calcular("conta")}
-        >
-          <Text style={styles.buttonText}>Calcular</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => calcular2("FpraC")}
+      >
+        <Text style={styles.buttonText}>Converter para Celsius</Text>
+      </TouchableOpacity>
 
-      <Text style={styles.result}>
-        Resultado: {resultado} 
-      </Text>
+      <Text style={styles.result}>Resultado: {resultado2}</Text>
     </View>
   );
 }
@@ -97,17 +115,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#fff",
   },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 20,
-    width: "80%",
-  },
   button: {
     backgroundColor: "#4CAF50",
     padding: 10,
     borderRadius: 5,
-    marginHorizontal: 5,
+    marginVertical: 10,
+    width: "80%",
+    alignItems: "center",
   },
   buttonText: {
     color: "#fff",
@@ -118,6 +132,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#333",
-    marginBottom: 20,
+    marginTop: 20,
   },
 });

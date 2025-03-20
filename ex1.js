@@ -62,9 +62,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.result}>
-        Resultado: {resultado} 
-      </Text>
+      <Text style={styles.result}>Resultado: {resultado}</Text>
     </View>
   );
 }

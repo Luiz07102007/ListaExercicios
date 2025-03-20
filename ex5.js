@@ -1,33 +1,23 @@
 import React, { useState } from "react";
 import {
-  StyleSheet,
-  Text,
   View,
+  Text,
   TextInput,
-  Image,
   TouchableOpacity,
+  StyleSheet,
+  Image,
 } from "react-native";
-
 export default function App() {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [resultado, setResultado] = useState("");
-  const calcular = (vm) => {
-    const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
+  const calcEc = (massa, velocidade) => {
+    return 0.5 * massa * Math.pow(velocidade, 2);
+  };
 
-    if (isNaN(n1) || isNaN(n2)) {
-      setResultado("Entrada inválida");
-      return;
-    }
-
-    switch (vm) {
-      case "conta":
-        setResultado(n1 / n2 + "V");
-        break;
-      default:
-        break;
-    }
+  const handlecine = () => {
+    const sum = calcEc(parseFloat(num1), parseFloat(num2));
+    setResultado(`Soma: ${sum} Ec`);
   };
 
   return (
@@ -38,37 +28,30 @@ export default function App() {
         }}
         style={styles.image}
       />
-      <Text style={styles.title}>Velocidade Média Fórmula</Text>
+      <Text style={styles.title}>Cálculo da Energia Cinética</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor da distância percorrida"
+        placeholder="Digite o valor da massa"
         keyboardType="numeric"
         value={num1}
         onChangeText={(text) => setNum1(text)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor do tempo"
+        placeholder="Digite o valor da velocidade"
         keyboardType="numeric"
         value={num2}
         onChangeText={(text) => setNum2(text)}
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => calcular("conta")}
-        >
+        <TouchableOpacity style={styles.button} onPress={handlecine}>
           <Text style={styles.buttonText}>Calcular</Text>
         </TouchableOpacity>
       </View>
-
-      <Text style={styles.result}>
-        Resultado: {resultado} 
-      </Text>
+      <Text style={styles.result}>{resultado}</Text>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -97,17 +80,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#fff",
   },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 20,
-    width: "80%",
-  },
   button: {
     backgroundColor: "#4CAF50",
     padding: 10,
     borderRadius: 5,
-    marginHorizontal: 5,
+    marginVertical: 10,
+    width: "80%",
+    alignItems: "center",
   },
   buttonText: {
     color: "#fff",
@@ -118,6 +97,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#333",
-    marginBottom: 20,
+    marginTop: 20,
   },
 });
