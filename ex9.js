@@ -23,7 +23,7 @@ export default function App() {
 
     switch (vm) {
       case "conta":
-        setResultado("Resultado:"+ n1 / n2 + "V");
+        setResultado("O seu salário total nesse mês foi de:" + n1 * n2 + "R$");
         break;
       default:
         break;
@@ -38,17 +38,17 @@ export default function App() {
         }}
         style={styles.image}
       />
-      <Text style={styles.title}>Velocidade Média Fórmula</Text>
+      <Text style={styles.title}>Calculadora de salário</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor da distância percorrida"
+        placeholder="Digite o quanto você ganha por hora"
         keyboardType="numeric"
         value={num1}
         onChangeText={(text) => setNum1(text)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor do tempo"
+        placeholder="Digite o seu número de horas trabalhadas no mês"
         keyboardType="numeric"
         value={num2}
         onChangeText={(text) => setNum2(text)}

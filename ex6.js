@@ -10,20 +10,18 @@ import {
 
 export default function App() {
   const [num1, setNum1] = useState("");
-  const [num2, setNum2] = useState("");
   const [resultado, setResultado] = useState("");
   const calcular = (vm) => {
     const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
 
-    if (isNaN(n1) || isNaN(n2)) {
+    if (isNaN(n1)) {
       setResultado("Entrada inválida");
       return;
     }
 
     switch (vm) {
       case "conta":
-        setResultado("Resultado:"+ n1 / n2 + "V");
+        setResultado(n1*100+" CM");
         break;
       default:
         break;
@@ -38,20 +36,13 @@ export default function App() {
         }}
         style={styles.image}
       />
-      <Text style={styles.title}>Velocidade Média Fórmula</Text>
+      <Text style={styles.title}>Conversor de metros em centimetros</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor da distância percorrida"
+        placeholder="Digite o valor em metros"
         keyboardType="numeric"
         value={num1}
         onChangeText={(text) => setNum1(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Digite o valor do tempo"
-        keyboardType="numeric"
-        value={num2}
-        onChangeText={(text) => setNum2(text)}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -62,7 +53,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.result}>{resultado}</Text>
+      <Text style={styles.result}>Resultado: {resultado}</Text>
     </View>
   );
 }

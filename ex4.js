@@ -24,7 +24,7 @@ export default function App() {
 
     switch (temp) {
       case "CpraF":
-        setResultado(n1 * 1.8 + 32 + " °F");
+        setResultado("Resultado de celsius para fahrenheit:"+n1 * 1.8 + 32 + " °F");
         break;
       default:
     }
@@ -38,7 +38,7 @@ export default function App() {
 
     switch (temp2) {
       case "FpraC":
-        setResultado2((n2 - 32) / 1.8 + " °C");
+        setResultado2("Resultado de fahrenheit para celsius:"+ (n2 - 32) / 1.8 + " °C");
         break;
       default:
     }
@@ -82,7 +82,7 @@ export default function App() {
         <Text style={styles.buttonText}>Converter para Celsius</Text>
       </TouchableOpacity>
 
-      <Text style={styles.result}>Resultado: {resultado2}</Text>
+      <Text style={styles.result}>{resultado2}</Text>
     </View>
   );
 }

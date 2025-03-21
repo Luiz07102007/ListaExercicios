@@ -24,7 +24,7 @@ export default function App() {
 
     switch (vm) {
       case "conta":
-        setResultado(n1 * n2 + "W");
+        setResultado("Resultado:"+ n1 * n2 + "W");
         break;
       default:
         break;
@@ -63,7 +63,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.result}>Resultado: {resultado}</Text>
+      <Text style={styles.result}>{resultado}</Text>
     </View>
   );
 }

@@ -16,8 +16,8 @@ export default function App() {
   };
 
   const handlecine = () => {
-    const sum = calcEc(parseFloat(num1), parseFloat(num2));
-    setResultado(`Soma: ${sum} Ec`);
+    const receba = calcEc(parseFloat(num1), parseFloat(num2));
+    setResultado(`Soma: ${receba} Ec`);
   };
 
   return (
