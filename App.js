@@ -10,20 +10,24 @@ import {
 
 export default function App() {
   const [num1, setNum1] = useState("");
+  const [num2, setNum2] = useState("");
   const [resultado, setResultado] = useState("");
-  const [dobro, setDobro] =useState("");
   const calcular = (vm) => {
     const n1 = parseFloat(num1);
+    const n2 = parseFloat(num2);
 
-    if (isNaN(n1)) {
+    if (isNaN(n1) || isNaN(n2)) {
       setResultado("Entrada inválida");
-      setDobro("");
       return;
     }
 
-  const area = n1 * n1;
-  setResultado("Resultado da área do quadrado é :"+ area);
-    setDobro("E seu dobro é:"+area * 2);
+    switch (vm) {
+      case "conta":
+        setResultado("Tempo aproximado do download do arquivo:"+ (n1 / (n2 / 8) / 60) + "Mins");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -34,15 +38,21 @@ export default function App() {
         }}
         style={styles.image}
       />
-      <Text style={styles.title}>Calculadora área do quadrado e seu dobro</Text>
+      <Text style={styles.title}>Calculadora de tempo de download</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite o valor do lado do quadrado"
+        placeholder="Digite o tamanho do arquivo em MB"
         keyboardType="numeric"
         value={num1}
         onChangeText={(text) => setNum1(text)}
       />
-     
+      <TextInput
+        style={styles.input}
+        placeholder="Digite a velocidade do link de internet em MBPS"
+        keyboardType="numeric"
+        value={num2}
+        onChangeText={(text) => setNum2(text)}
+      />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
@@ -53,7 +63,6 @@ export default function App() {
       </View>
 
       <Text style={styles.result}>{resultado}</Text>
-      <Text style={styles.result}>{dobro}</Text>
     </View>
   );
 }
